@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build automation'
-                sh 'gradle clean build'
+                sh 'gradlew clean build'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
