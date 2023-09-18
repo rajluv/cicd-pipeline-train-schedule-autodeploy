@@ -24,16 +24,29 @@ pipeline {
                 }
             }
         }
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    docker.withRegistry('https://registry-1.docker.io', 'docker_hub_login') {
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
-                    }
-                }
-            }
-        }
+
+        stage('Login2DockerHub') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+		stage('Push2DockerHub') {
+
+			steps {
+				sh "docker push bhavukm/train-schedule:latest"
+			}
+		}
+        //stage('Push Docker Image') {
+            //steps {
+                //script {
+                    //docker.withRegistry('https://registry-1.docker.io', 'docker_hub_login') {
+                        //app.push("${env.BUILD_NUMBER}")
+                        //app.push("latest")
+                    //}
+                //}
+            //}
+        //}
         stage('CanaryDeploy') {
             when {
                 branch 'master'
