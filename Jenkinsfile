@@ -16,9 +16,8 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
-            git checkout 'master'
             when {
-                branch 'master'
+                branch '*'
             }
             steps {
                 script {
