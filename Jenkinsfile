@@ -28,7 +28,7 @@ pipeline {
 	stage('Docker Login') {
     steps {
         script {
-            def dockerRegistry = 'https://registry-1.docker.io'  // Docker Hub registry URL
+            def dockerRegistry = 'docker.io'  // Docker Hub registry URL
             def dockerUsername = 'rajlearn29'  // Replace with your Docker Hub username
             def dockerToken = 'dckr_pat_-uLp3xQZmlZdVRzczsb9xz59yQA'  // Replace with your Docker Hub authentication token
             
