@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build automation'
-                sh 'chmod +x ./gradle build --no-daemon'
+                sh 'gradle clean build'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
