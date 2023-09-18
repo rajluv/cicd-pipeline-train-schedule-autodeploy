@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             when {
-                branch 'master'
+                branch 'slave1'
             }
             steps {
                 script {
