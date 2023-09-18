@@ -25,18 +25,19 @@ pipeline {
             }
         }
 
-        stage('Login2DockerHub') {
+	stage('Docker Login') {
+    steps {
+        script {
+            def dockerRegistry = 'https://registry-1.docker.io'  // Docker Hub registry URL
+            def dockerUsername = 'rajlearn29'  // Replace with your Docker Hub username
+            def dockerToken = 'dckr_pat_-uLp3xQZmlZdVRzczsb9xz59yQA'  // Replace with your Docker Hub authentication token
+            
+            sh "echo ${dockerToken} | docker login --username ${dockerUsername} --password-stdin ${dockerRegistry}"
+	    sh 'docker push https://hub.docker.com/rajlearn29/train-schedule:latest'
+        }
+    }
+}
 
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
-		stage('Push2DockerHub') {
-
-			steps {
-				sh "docker push bhavukm/train-schedule:latest"
-			}
-		}
         //stage('Push Docker Image') {
             //steps {
                 //script {
