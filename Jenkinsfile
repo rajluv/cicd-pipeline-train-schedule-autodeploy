@@ -45,6 +45,14 @@ pipeline {
                 //}
             //}
         //}
+	stage('Deploy to Kubernetes') {
+    steps {
+        container(' train-schedule') {
+            sh 'kubectl apply -f train-schedule-kube-canary.yml'
+        }
+    }
+}
+	    
         stage('CanaryDeploy') {
             environment { 
                 CANARY_REPLICAS = 1
