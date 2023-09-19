@@ -47,8 +47,8 @@ pipeline {
         //}
 	stage('Deploy to Kubernetes') {
     	    steps {
-        	container(' train-schedule') {
-            	sh 'kubectl apply -f train-schedule-kube-canary.yml'
+		script {
+        	    sh 'kubectl apply -f train-schedule-kube-canary.yml'
           	}
     	    }
 	}
