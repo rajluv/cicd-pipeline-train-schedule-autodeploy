@@ -28,15 +28,8 @@ pipeline {
 	stage('Docker Login') {
     steps {
         script {
-            def dockerRegistry = 'http://docker.io'  // Docker Hub registry URL
-            def dockerUsername = 'rajlearn29'  // Replace with your Docker Hub username
-            def dockerToken = 'dckr_pat_-uLp3xQZmlZdVRzczsb9xz59yQA'  // Replace with your Docker Hub authentication token
-            
-            sh "echo ${dockerToken} | docker login --username ${dockerUsername} --password-stdin ${dockerRegistry}"
-	    sh 'docker push https://hub.docker.com/rajlearn29/train-schedule:latest'
-        }
-    }
-}
+            sh 'docker login -u rajlearn29 -p Trunksmagina123@'
+	    sh 'docker psuh rajlearn29/train-schedule:latest'
 
         //stage('Push Docker Image') {
             //steps {
