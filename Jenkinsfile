@@ -29,7 +29,7 @@ pipeline {
     	   steps {
                script {
             	sh 'docker login -u rajlearn29 -p Trunksmagina123@'
-	    	sh 'docker psuh rajlearn29/train-schedule:latest'
+	    	sh 'docker push rajlearn29/train-schedule:latest'
 	       }
 	   }
 	}
