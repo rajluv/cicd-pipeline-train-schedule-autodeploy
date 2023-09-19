@@ -25,11 +25,14 @@ pipeline {
             }
         }
 
-	stage('Docker Login') {
-    steps {
-        script {
-            sh 'docker login -u rajlearn29 -p Trunksmagina123@'
-	    sh 'docker psuh rajlearn29/train-schedule:latest'
+	stage('Docker Push') {
+    	   steps {
+               script {
+            	sh 'docker login -u rajlearn29 -p Trunksmagina123@'
+	    	sh 'docker psuh rajlearn29/train-schedule:latest'
+	       }
+	   }
+	}
 
         //stage('Push Docker Image') {
             //steps {
