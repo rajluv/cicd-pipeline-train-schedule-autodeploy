@@ -45,9 +45,6 @@ pipeline {
             //}
         //}
         stage('CanaryDeploy') {
-            when {
-                branch 'master'
-            }
             environment { 
                 CANARY_REPLICAS = 1
             }
