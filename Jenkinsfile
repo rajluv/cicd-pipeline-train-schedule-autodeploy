@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'slave1' }
+    agent any
     environment {
         //be sure to replace "bhavukm" with your own Docker Hub username
         JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64'
