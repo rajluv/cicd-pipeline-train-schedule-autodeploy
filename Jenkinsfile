@@ -15,25 +15,25 @@ pipeline {
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    app = docker.build(DOCKER_IMAGE_NAME)
-                    app.inside {
-                        sh 'echo Hello, World!'
-                    }
-                }
-            }
-        }
+        //stage('Build Docker Image') {
+            //steps {
+              //  script {
+                //    app = docker.build(DOCKER_IMAGE_NAME)
+                  //  app.inside {
+                    //    sh 'echo Hello, World!'
+                    //}
+                //}
+            //}
+        //}
 
-	stage('Docker Push') {
-    	   steps {
-               script {
-            	sh 'docker login -u rajlearn29 -p Trunksmagina123@'
-	    	sh 'docker push rajlearn29/train-schedule:latest'
-	       }
-	   }
-	}
+	//stage('Docker Push') {
+    	  // steps {
+            //   script {
+            	//sh 'docker login -u rajlearn29 -p Trunksmagina123@'
+	    	//sh 'docker push rajlearn29/train-schedule:latest'
+	       //}
+	   //}
+	//}
 
         //stage('Push Docker Image') {
             //steps {
