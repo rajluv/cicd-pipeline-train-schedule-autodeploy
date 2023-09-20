@@ -26,14 +26,14 @@ pipeline {
             }
         }
 
-	//stage('Docker Push') {
-    	  // steps {
-            //   script {
-            	//sh 'docker login -u rajlearn29 -p Trunksmagina123@'
-	    	//sh 'docker push rajlearn29/train-schedule:latest'
-	       //}
-	   //}
-	//}
+	stage('Docker Push') {
+    	   steps {
+               script {
+            	sh 'docker login -u rajlearn29 -p Trunksmagina123@'
+	    	sh 'docker push bhavukm/train-schedule:latest'
+	       }
+	   }
+	}
 
         //stage('Push Docker Image') {
             //steps {
@@ -45,6 +45,12 @@ pipeline {
                 //}
             //}
         //}
+	stage('kube deploy') {
+            steps {
+                sh "/home/edureka/script/kubedeploy.sh"
+            }
+        }
+
 	stage('kube deploy') {
             steps {
                 sh "/home/edureka/script/kubedeploy.sh"
