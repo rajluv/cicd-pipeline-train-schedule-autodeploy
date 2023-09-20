@@ -3,7 +3,7 @@ pipeline {
     environment {
         //be sure to replace "bhavukm" with your own Docker Hub username
         JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64'
-        DOCKER_IMAGE_NAME = "rajlearn29/train-schedule"
+        DOCKER_IMAGE_NAME = "bhavukm/train-schedule"
     }
     stages {
         stage('Build') {
@@ -60,7 +60,7 @@ pipeline {
         stage('CanaryDeploy') {
             //when {
                 //branch 'master'
-            }
+            //}
             environment { 
                 CANARY_REPLICAS = 1
             }
