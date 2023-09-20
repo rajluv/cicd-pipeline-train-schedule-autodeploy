@@ -45,33 +45,31 @@ pipeline {
                 //}
             //}
         //}
-	stage('Deploy to Kubernetes') {
-    	    steps {
-		script {
-        	    sshPublisher(publishers: [sshPublisherDesc(configName: 'kmaster', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'sh \'/home/edureka/script/kubedeploy.sh\'', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'train-schedule-kube-canary.yml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-          	}
-    	    }
-	}
+	stage('kube deploy') {
+            steps {
+                sh "/home/edureka/script/kubedeploy.sh"
+            }
+        }
 	    
         //stage('CanaryDeploy') {
             //environment { 
                // CANARY_REPLICAS = 1
            // }
-        stage('CanaryDeploy') {
+        //stage('CanaryDeploy') {
             //when {
                 //branch 'master'
             //}
-            environment { 
-                CANARY_REPLICAS = 1
-            }
-            steps {
-                kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
-                    configs: 'train-schedule-kube-canary.yml',
-                    enableConfigSubstitution: true
-                )
-            }
-        }
+            //environment { 
+                //CANARY_REPLICAS = 1
+            //}
+            //steps {
+                //kubernetesDeploy(
+                    //kubeconfigId: 'kubeconfig',
+                    //configs: 'train-schedule-kube-canary.yml',
+                    //enableConfigSubstitution: true
+                //)
+            //}
+        //}
         stage('DeployToProduction') {
             when {
                 branch 'master'
