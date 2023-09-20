@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'slave1' }
+    agent any
     environment {
         //be sure to replace "bhavukm" with your own Docker Hub username
         JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64'
@@ -57,14 +57,21 @@ pipeline {
             //environment { 
                // CANARY_REPLICAS = 1
            // }
-           // steps {
-               // kubernetesDeploy(
-                  //  kubeconfigId: 'kubeconfig',
-                   // configs: 'train-schedule-kube-canary.yml',
-                   // enableConfigSubstitution: true
-                //)
-            //}
-        //}
+        stage('CanaryDeploy') {
+            //when {
+                //branch 'master'
+            }
+            environment { 
+                CANARY_REPLICAS = 1
+            }
+            steps {
+                kubernetesDeploy(
+                    kubeconfigId: 'kubeconfig',
+                    configs: 'train-schedule-kube-canary.yml',
+                    enableConfigSubstitution: true
+                )
+            }
+        }
         stage('DeployToProduction') {
             when {
                 branch 'master'
