@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'slave1' }
     environment {
         //be sure to replace "bhavukm" with your own Docker Hub username
         JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64'
@@ -48,7 +48,7 @@ pipeline {
 	stage('Deploy to Kubernetes') {
     	    steps {
 		script {
-        	    sh './kubedeploy.sh'
+        	    sshPublisher(publishers: [sshPublisherDesc(configName: 'kmaster', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'sh \'/home/edureka/script/kubedeploy.sh\'', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'train-schedule-kube-canary.yml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
           	}
     	    }
 	}
