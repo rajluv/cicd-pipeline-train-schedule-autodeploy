@@ -45,11 +45,11 @@ pipeline {
                 }
             }
         }
-	//stage('CANARY DEPLOYMENT') {
-            //steps {
-                //sh "/home/edureka/script/kubedeploy.sh"
-            //}
-        //}
+	stage('CANARY DEPLOYMENT') {
+            steps {
+                sh "./kubedeploy.sh"
+            }
+        }
 
 	//stage('PROD DEPLOYMENT') {
             //steps {
@@ -57,18 +57,18 @@ pipeline {
             //}
         //}
 	    
-        stage('CanaryDeploy') {
-            environment { 
-                CANARY_REPLICAS = 1
-            }
-            steps {
-                kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
-                    configs: 'train-schedule-kube-canary.yml',
-                    enableConfigSubstitution: true
-                )
-            }
-        }
+        //stage('CanaryDeploy') {
+            //environment { 
+                //CANARY_REPLICAS = 1
+            //}
+            //steps {
+                //kubernetesDeploy(
+                    //kubeconfigId: 'kubeconfig',
+                    //configs: 'train-schedule-kube-canary.yml',
+                    //enableConfigSubstitution: true
+                //)
+            //}
+        //}
         //stage('DeployToProduction') {
             //when {
                 //branch 'master'
