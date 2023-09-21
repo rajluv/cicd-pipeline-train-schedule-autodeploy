@@ -51,6 +51,12 @@ pipeline {
             }
         }
 
+	stage('Train-Schedule PROD DEPLOYMENT') {
+            steps {
+                sh "./kubedeploy-Prod.sh"
+            }
+        }
+
 	//stage('PROD DEPLOYMENT') {
             //steps {
                 //sh "/home/edureka/script/kubedeploy.sh"
