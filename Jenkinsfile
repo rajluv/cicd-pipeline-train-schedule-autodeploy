@@ -26,36 +26,36 @@ pipeline {
             }
         }
 
-	stage('Docker Push') {
-    	   steps {
-               script {
-            	sh 'docker login -u rajlearn29 -p Trunksmagina123@'
-	    	sh 'docker push rajlearn29/train-schedule:latest'
-	       }
-	   }
-	}
+	//stage('Docker Push') {
+    	   //steps {
+               //script {
+            	//sh 'docker login -u rajlearn29 -p Trunksmagina123@'
+	    	//sh 'docker push rajlearn29/train-schedule:latest'
+	       //}
+	   //}
+	//}
 
-        //stage('Push Docker Image') {
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry-1.docker.io', 'docker_hub_login') {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
+                    }
+                }
+            }
+        }
+	//stage('CANARY DEPLOYMENT') {
             //steps {
-                //script {
-                    //docker.withRegistry('https://registry-1.docker.io', 'docker_hub_login') {
-                        //app.push("${env.BUILD_NUMBER}")
-                        //app.push("latest")
-                    //}
-                //}
+                //sh "/home/edureka/script/kubedeploy.sh"
             //}
         //}
-	stage('CANARY DEPLOYMENT') {
-            steps {
-                sh "/home/edureka/script/kubedeploy.sh"
-            }
-        }
 
-	stage('PROD DEPLOYMENT') {
-            steps {
-                sh "/home/edureka/script/kubedeploy.sh"
-            }
-        }
+	//stage('PROD DEPLOYMENT') {
+            //steps {
+                //sh "/home/edureka/script/kubedeploy.sh"
+            //}
+        //}
 	    
         //stage('CanaryDeploy') {
             //environment { 
