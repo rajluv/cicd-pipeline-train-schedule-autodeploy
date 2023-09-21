@@ -47,12 +47,14 @@ pipeline {
         }
 	stage('CANARY DEPLOYMENT') {
             steps {
+		sh "chmod +x kubedeploy.sh"
                 sh "./kubedeploy.sh"
             }
         }
 
 	stage('Train-Schedule PROD DEPLOYMENT') {
             steps {
+		sh "chmod +x kubedeploy-Prod.sh"
                 sh "./kubedeploy-Prod.sh"
             }
         }
