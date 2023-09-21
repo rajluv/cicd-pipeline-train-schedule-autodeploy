@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: train-schedule
-        image: rajlearn/train-schedule:88
+        image: rajlearn29/train-schedule:89
         ports:
         - containerPort: 8080
         livenessProbe:
