@@ -9,7 +9,7 @@ spec:
   ports:
   - protocol: TCP
     port: 8080
-    nodePort: 31000
+    nodePort: 31001
 
 ---
 
@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: train-schedule
-        image: rajlearn/train-schedule
+        image: rajlearn/train-schedule:88
         ports:
         - containerPort: 8080
         livenessProbe:
